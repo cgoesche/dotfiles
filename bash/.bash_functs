@@ -1,0 +1,25 @@
+function gitpush(){
+	target_Dir="$1"
+	[ -d "$target_Dir" ] || echo -e "Directory ${target_Dir} does not exist!\n"; return 1;
+	cd $target_Dir
+	#git add .
+	#git commit -m "update"
+	#git push origin main
+}
+
+function dev(){
+	cd ~/Nextcloud/dev/${1}
+}
+
+function printeradd(){
+	PRINTERNAME=$1
+	PRINTER_IP=$2
+	lpadmin -p ${PRINTERNAME} -E -v ipp://${PRINTER_IP}/ipp/print -m everywhere
+	
+	if [ $? -ne 0 ] ; then
+		echo "Printer ${PRINTERNAME} could not be added!"
+		return 1
+	fi
+	return 0
+}
+
