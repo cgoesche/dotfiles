@@ -121,7 +121,7 @@ if ! shopt -oq posix; then
 fi
 
 # Path
-export PATH=$PATH:/usr/local/go/bin
+export PATH=${PATH}:${HOME}/.local/bin:/usr/local/go/bin
 
 # Git
 git config --global user.name "christiangoeschel"
@@ -130,4 +130,5 @@ git config --global user.email "cndjomouo@icloud.com"
 # Source these
 source ~/Nextcloud/dev/bash/source-me.sh
 
-
+# Rust
+. "${HOME}/.cargo/env"
