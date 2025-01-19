@@ -132,3 +132,6 @@ source ~/Nextcloud/dev/bash/source-me.sh
 
 # Rust
 . "${HOME}/.cargo/env"
+
+# Starship
+eval "$(starship init bash)"
