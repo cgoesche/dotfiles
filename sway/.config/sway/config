@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:JetBrainsMonoNL Nerd Font 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -157,7 +157,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? \
+                                This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -200,11 +201,11 @@ bindsym $mod+Ctrl+less move workspace to output left
 exec_always alttab
 
 # Lock keybinding
-bindsym $mod+l exec /usr/bin/i3lock-fancy
+bindsym $mod+l exec /usr/bin/swaylock
 
 # Gaps
 gaps inner 0
-gaps outer 30
+gaps outer 5
 smart_gaps on
 
 # Wallpaper
@@ -217,7 +218,7 @@ exec --no-startup-id picom -CGb
 for_window [class="^.*"] border pixel 1
 
 # Polybar
-exec_always waybar
+exec_always pkill waybar && waybar
 
 # Gruvbox Colorscheme
 set $bg "#282828"
