@@ -40,12 +40,16 @@ exec dex-autostart --autostart --environment sway
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec nm-applet
 
+# Position output displays
+exec_always pos-home-mon
+
 # Set default variables
 set $term               kitty
 set $browser            firefox
 set $app_launcher       ${HOME}/.config/rofi/launchers/type-4/launcher.sh
 set $swaynag            swaynag -t tokyo-night
 set $screenshot_cmd     grimshot --notify save area
+set $music_app          kitty --class=music ncspot
 
 # FUNCTION KEYS
 #
@@ -59,6 +63,9 @@ bindsym XF86AudioMicMute        exec pactl set-source-mute @DEFAULT_SOURCE@ togg
 bindsym XF86MonBrightnessUp     exec brightnessctl -c backlight s +5%
 bindsym XF86MonBrightnessDown   exec brightnessctl -c backlight s 5%-
 
+# App Launcher
+bindsym XF86Search              exec $app_launcher
+
 # TRACKPAD:
 #
 # Switch workspaces on swipe
@@ -68,10 +75,9 @@ bindgesture swipe:left  workspace next
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-
 # CLASS ASSIGNMENTS:
 #
-for_window [app_id="floating_term"] floating enable, resize set 960 540, move position center
+for_window [app_id="floating_term"]     floating enable, resize set 960 540, move position center 
 
 # GENERIC KEYBINDINGS:
 #
@@ -92,6 +98,9 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec $app_launcher
+
+# Open the music app
+bindsym $mod+Shift+m exec $music_app
 
 # Lock keybinding
 bindsym $mod+l exec /usr/bin/swaylock
@@ -189,8 +198,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Pin apps to workspaces
-assign [app_id="firefox"] 2
-assign [app_id="dev_term"] 3
+assign [app_id="firefox"]       2
+assign [app_id="dev_term"]      3
+assign [app_id="music"]         7
 
 # SWAY KEYBINDINGS:
 #
