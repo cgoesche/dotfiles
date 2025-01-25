@@ -36,17 +36,16 @@
              		"2": "www",
              		"3": "dev",
              		"4": "doc",
-             		"5": "sys",
+             		"5": "admin",
              		"6": "chat",
-             		"7": "mus",
+             		"7": "music",
              		"8": "vid",
-             		"9": "gfx",
-             		"10": "msc"
+             		"9": "misc"
          	}
      	},
 	"custom/logo": {
 		"format": "",
-		"on-click": "${HOME}/.config/waybar/scripts/waybar-sysinfo.sh",
+		"on-click": "${HOME}/.config/rofi/launchers/type-4/launcher.sh",
 		"tooltip": "true",
 		"tooltip-format": "Fedora Linux Asahi Remix 40 aarch64"
 	},
@@ -60,14 +59,15 @@
 		"on-click": "${HOME}/.config/rofi/powermenu/type-6/powermenu.sh"
 	},
 	"custom/keyboardbacklight": {
-		"format": "{}  ",
-		"exec": "genesis -p",
+		"format": " ",
 		"on-click": "genesis --auto",
 		"on-scroll-up": "genesis -b +1%",
 		"on-scroll-down": "genesis -b -1%",
 		"scroll-step": "2.0",
 		"smooth-scrolling-threshold": "2.0",
-		"restart-interval": "1"
+		"restart-interval": "1",
+		"tooltip": "true",
+		"tooltip-format": "Keyboard backlight"
 	},
 	"clock": {
 		"format": "{:%H:%M}",
@@ -87,7 +87,7 @@
         	"format-icons": ["󱊡", "󱊢", "󱊣"]
 	},
 	"network": {
-        	"format-wifi": "{essid}",
+        	"format-wifi": "SSID: {essid}",
         	"format-ethernet": "ETH-IP: {ipaddr}",
         	"format-linked": "{ifname} (No IP)",
         	"format-disconnected": "󰤮 Disconnected",
