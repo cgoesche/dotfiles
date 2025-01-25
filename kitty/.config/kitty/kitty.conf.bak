@@ -1,0 +1,6 @@
+# BEGIN_KITTY_THEME
+# purpurite
+include current-theme.conf
+# END_KITTY_THEME
+enable_audio_bell no
+window_padding_width 5 
