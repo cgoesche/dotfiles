@@ -3,6 +3,15 @@
 # Leader key
 set $mod Mod4
 
+# Set default variables
+set $term               kitty
+set $browser            firefox --new-instance --name=generic --profile=cjg2wf2c.default
+set $app_launcher       ${HOME}/.config/rofi/launchers/type-4/launcher.sh
+set $swaynag            swaynag -t tokyo-night
+set $screenshot_cmd     grimshot --notify save area
+set $music_app          kitty --class=music ncspot
+set $special_app        firefox --new-instance --name=todo --profile=xwupc8ad.default-release https://www.notion.so/14869444bcaa80c6ad44f9bb7d9a1084?v=14869444bcaa81ac8102000c01ed4b0b
+#set $music_visualizer   
 # STYLING:
 #
 font pango:JetBrainsMonoNL Nerd Font 8
@@ -43,21 +52,18 @@ exec nm-applet
 # Position output displays
 exec_always pos-home-mon
 
-# Set default variables
-set $term               kitty
-set $browser            firefox
-set $app_launcher       ${HOME}/.config/rofi/launchers/type-4/launcher.sh
-set $swaynag            swaynag -t tokyo-night
-set $screenshot_cmd     grimshot --notify save area
-set $music_app          kitty --class=music ncspot
-
 # FUNCTION KEYS
 #
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
+bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
 bindsym XF86AudioMute           exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute        exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Use playbackctl to control media playback
+bindsym XF86AudioPlay           exec playerctl play-pause 
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPrev           exec playerctl previous
 
 # Use brightnessctl to adjust backlight
 bindsym XF86MonBrightnessUp     exec brightnessctl -c backlight s +5%
@@ -65,6 +71,9 @@ bindsym XF86MonBrightnessDown   exec brightnessctl -c backlight s 5%-
 
 # App Launcher
 bindsym XF86Search              exec $app_launcher
+
+# Launch special app
+bindsym XF86LaunchA             exec $special_app
 
 # TRACKPAD:
 #
@@ -75,9 +84,11 @@ bindgesture swipe:left  workspace next
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# CLASS ASSIGNMENTS:
+# PER-CLASS/APP-ID ATTRIBUTES:
 #
-for_window [app_id="floating_term"]     floating enable, resize set 960 540, move position center 
+for_window [app_id="floating_term"]     floating enable, resize set 960 540, move position center
+for_window [app_id="music"]             resize set 650 900, move position center
+for_window [app_id="music_visualizer"]  resize set 400 300, move position left
 
 # GENERIC KEYBINDINGS:
 #
@@ -200,7 +211,12 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Pin apps to workspaces
 assign [app_id="firefox"]       2
 assign [app_id="dev_term"]      3
+assign [app_id="todo"]          5
 assign [app_id="music"]         7
+
+# Workspace properties
+for_window [workspace=7] floating enable
+for_window [workspace=4] layout stacking
 
 # SWAY KEYBINDINGS:
 #

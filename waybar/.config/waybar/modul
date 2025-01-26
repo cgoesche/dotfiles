@@ -114,7 +114,7 @@
 	"bluetooth": {
 		"format-disabled": "off",
 		"format": " ",
-		"on-click": "blueman-manager",
+		"on-click": "kitty --class=floating_term bluetoothctl",
 		"max-length": 10,
 		"on-click-right": "rfkill toggle bluetooth",
 	},
@@ -687,8 +687,8 @@
 
 	"mpris": {
 		"interval": 0,
-		"format": "<span color=\"#a6da95\">{player_icon} [</span> {title} <span color=\"#a6da95\"></span>",
-		"format-paused": "<span color=\"#ee99a0\">{status_icon}</span> <i>{title}</i>",
+		"format": "<span color=\"#a6da95\">{player_icon} [</span>",
+		"format-paused"",
 		"on-click": "playerctl play-pause",
 		"on-click-middle": "playerctl previous",
 		"on-click-right": "playerctl next",
@@ -704,6 +704,7 @@
 			"mopidy": " ",
 			"mpv": " ",
 			"spotify": " ",
+			"ncspot": " ",
 			"vlc": "󰕼 ",
 		},
 		"status-icons": {
@@ -712,13 +713,13 @@
 			"stopped": " ",
 		},
 		// "ignored-players": ["firefox"]
-		"max-length": 20,
+		"max-length": 10,
 	},
  	
 	"mpris#text": {
 		"interval": 0,
-		"format": "<span color=\"#cba6f7\">{player_icon}</span> {title}",
-		"format-paused": "<span color=\"#ee99a0\">{status_icon}</span> <i>{title}</i>",
+		"format": "<span color=\"#cba6f7\">{player_icon}</span> ",
+		"format-paused": "<span color=\"#ee99a0\">{status_icon}</span>",
 		"format-stopped": "<span color=\"#ee99a0\"></span> <i>No Media</i>",
 		"on-click": "playerctl play-pause",
 		"on-click-middle": "playerctl previous",
@@ -734,7 +735,7 @@
 			"kdeconnect": " ",
 			"mopidy": " ",
 			"mpv": " ",
-			"spotify": " ",
+			"ncspot": " ",
 			"vlc": "󰕼 ",
 		},
 		"status-icons": {
@@ -753,7 +754,7 @@
 	},
 
 	"mpd": {
-	    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+	    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} ",
 	    "format-disconnected": "Disconnected ",
 	    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
 	    "interval": 10,

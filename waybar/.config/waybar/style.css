@@ -140,6 +140,24 @@ window#waybar {
   color: #ff9e64;
 }
 
+#mpris {
+  background-color: #1d202e;
+  margin: 5px 0;
+  margin-right: 3px;
+  padding: 0 10px;
+  border-radius: 2px 2px 2px 2px;
+  color: #a6da95;
+}
+
+#cava {
+  background-color: #1d202e;
+  margin: 5px 0;
+  margin-right: 3px;
+  padding: 0 10px;
+  border-radius: 2px 2px 2px 2px;
+  color: #a6da95;
+}
+
 #cpu {
   margin: 5px 0;
   padding: 0 10px;
@@ -177,4 +195,19 @@ window#waybar {
 #tray > * {
   padding: 0 2px;
   margin: 0 2px;
+}
+
+#systemd-failed-units {
+  margin: 5px 0;
+  padding: 0 10px;
+  background-color: #b9f27c;
+  color: #24283b;
+  border-radius: 2px 2px 2px 2px;
+  margin-right: 3px;
+}
+
+#systemd-failed-units.degraded {
+  background-color: #f7768e;
+  color: #24283b;
+  border-radius: 2px 2px 2px 2px;
 }
