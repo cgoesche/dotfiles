@@ -1,3 +1,11 @@
+/* Animations */
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: black;
+  }
+}
+
 * {
   border: none;
   border-radius: 0;
@@ -210,4 +218,9 @@ window#waybar {
   background-color: #f7768e;
   color: #24283b;
   border-radius: 2px 2px 2px 2px;
+  /* animation-name: blink; */
+  animation-duration: 1s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }

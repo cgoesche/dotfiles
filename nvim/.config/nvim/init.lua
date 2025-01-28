@@ -618,7 +618,22 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
+        ansiblels = {},
+        bashls = {},
+        cssls = {},
+        css_variables = {},
+        dockerls = {},
+        html = {},
+        jqls = {},
+        java_language_server = {},
+        jsonls = {},
+        marksman = {},
+        ruff = {},
+        sqls = {},
+        terraformls = {},
+        typos_ls = {},
+        vuels = {},
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -626,7 +641,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -664,6 +679,7 @@ require('lazy').setup({
         'prettier',
         'shfmt',
         'shellcheck',
+        'gofmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -716,7 +732,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        go = { 'gofmt' },
+        go = { 'prettier', 'gofmt' },
         html = { 'prettier' },
         markdown = { 'prettier' },
         shell = { 'shellcheck', 'shfmt' },

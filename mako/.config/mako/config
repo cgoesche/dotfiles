@@ -1,4 +1,4 @@
-anchor=top-right
+anchor=top-center
 font=JetBrainsMono Nerd Font Mono 10
 background-color=#24283b
 text-color=#c0caf5
@@ -13,3 +13,5 @@ group-by=summary
 
 [grouped]
 format=<b>%s</b>\n%b
+
+
