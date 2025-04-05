@@ -156,7 +156,6 @@
 			"paused": " ",
 			"stopped": " ",
 		},
-		// "max-length": 30,
 		"title-len" : 30,
 	},
 	"systemd-failed-units": {
@@ -165,7 +164,7 @@
 		"format-alt": "{nr_failed} failed systemd unit(s)",
 		"format-ok": "✓",
 		"system": true, 		
-		"user": true
+		"user": true,
 	},
 	"cava": {
         	//"cava_config": "/home/cgoesche/.config/cava/config",

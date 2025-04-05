@@ -5,12 +5,12 @@ set $mod Mod4
 
 # Set default variables
 set $term               kitty
-set $browser            firefox --new-instance --name=firefox --profile=cjg2wf2c.default
+set $browser            GDK_BACKEND=wayland firefox --name=browser
 set $app_launcher       ${HOME}/.config/rofi/launchers/type-4/launcher.sh
 set $swaynag            swaynag -t tokyo-night
 set $screenshot_cmd     grimshot --notify save area
 set $music_app          kitty --class=music ncspot
-set $special_app        firefox --new-instance --name=todo --profile=xwupc8ad.default-release https://www.notion.so/14869444bcaa80c6ad44f9bb7d9a1084?v=14869444bcaa81ac8102000c01ed4b0b
+set $special_app        kitty --class=chat weechat
 #set $music_visualizer   
 # STYLING:
 #
@@ -53,14 +53,13 @@ exec dex-autostart --autostart --environment sway
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec nm-applet
 
-# Position output displays
-exec_always pos-home-mon
-
 # FUNCTION KEYS
 #
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +1% && paplay --process-time-msec=10 /usr/share/sounds/ocean/stereo/audio-volume-change.oga
-bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -1% && paplay --process-time-msec=10 /usr/share/sounds/ocean/stereo/audio-volume-change.oga
+bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +1% 
+# && paplay --process-time-msec=10 /usr/share/sounds/ocean/stereo/audio-volume-change.oga
+bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -1% 
+# && paplay --process-time-msec=10 /usr/share/sounds/ocean/stereo/audio-volume-change.oga
 bindsym XF86AudioMute           exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute        exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
@@ -70,8 +69,8 @@ bindsym XF86AudioNext           exec playerctl next
 bindsym XF86AudioPrev           exec playerctl previous
 
 # Use brightnessctl to adjust backlight
-bindsym XF86MonBrightnessUp     exec brightnessctl -c backlight s +5%
-bindsym XF86MonBrightnessDown   exec brightnessctl -c backlight s 5%-
+bindsym XF86MonBrightnessUp     exec backlightctl --set +5%
+bindsym XF86MonBrightnessDown   exec backlightctl --set -5%
 
 # App Launcher
 bindsym XF86Search              exec $app_launcher
@@ -216,11 +215,12 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [app_id="firefox"]       2
 assign [app_id="dev_term"]      3
 assign [app_id="todo"]          5
+assign [app_id="chat"]          6 
 assign [app_id="music"]         7
+
 
 # Workspace properties
 for_window [workspace=7] floating enable
-for_window [workspace=4] layout stacking
 
 # Follow newly opened windows
 for_window [app_id=.*] focus
@@ -264,6 +264,4 @@ bindsym $mod+r mode "resize"
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater       move workspace to output right
 bindsym $mod+Ctrl+less          move workspace to output left
-
-
 

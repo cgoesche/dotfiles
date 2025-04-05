@@ -120,19 +120,14 @@ if ! shopt -oq posix; then
 fi
 
 # Path
-export PATH=${PATH}:${HOME}/.local/bin:/usr/local/go/bin
-
-# Git
-git config --global user.name "christiangoeschel"
-git config --global user.email "cndjomouo@icloud.com"
-
-# Source these
-if [[ $(hostname) =~ ^laptop[1-9]+$ ]]; then
-	source "${HOME}/Nextcloud/dev/bash/source-me.sh"
-fi
+export PATH="${HOME}/.local/bin/electron:${PATH}:${HOME}/.local/bin:/usr/local/go/bin"
 
 # Rust
 . "${HOME}/.cargo/env"
 
 # Starship
 eval "$(starship init bash)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
