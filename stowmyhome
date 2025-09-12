@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-typeset -r USER_CONFIG_DIR="${HOME}/.config"
 typeset -r STOW_CMD="$(which stow)"
 typeset -r STOW_CMD_DEF_OPTS="--adopt "
 typeset -a STOW_PKGS=( bash i3 fonts kitty mako nvim polybar rofi starship sway wallpapers waybar )
