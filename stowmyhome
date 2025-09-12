@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+typeset -r USER_CONFIG_DIR="${HOME}/.config"
+typeset -r STOW_CMD="$(which stow)"
+typeset -r STOW_CMD_DEF_OPTS="--adopt "
+typeset -a STOW_PKGS=( bash i3 fonts kitty mako nvim polybar rofi starship sway wallpapers waybar )
+
+# Installs the specified package with stow(8)
+# Arguments:	$1 package name <string>
+function install_pkg() {	
+	p="${1}"
+
+	if ${STOW_CMD} ${STOW_CMD_DEF_OPTS} ${p}; then
+		echo "[OK] ${p} installed"
+	else
+		echo "[FAIL] ${p} could not be installed: Error: $?"
+	fi
+}
+
+for pkg in "${STOW_PKGS[@]}"; do
+	install_pkg "${pkg}"
+done
+
