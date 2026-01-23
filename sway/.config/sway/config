@@ -70,7 +70,7 @@ bindsym XF86AudioPrev           exec playerctl previous
 
 # Use brightnessctl to adjust backlight
 bindsym XF86MonBrightnessUp     exec backlightctl --set +5%
-bindsym XF86MonBrightnessDown   exec backlightctl --set -5%
+bindsym XF86MonBrightnessDown   exec backlightctl --set 5%-
 
 # App Launcher
 bindsym XF86Search              exec $app_launcher
