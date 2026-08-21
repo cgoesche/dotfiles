@@ -89,9 +89,12 @@ floating_modifier $mod
 
 # PER-CLASS/APP-ID ATTRIBUTES:
 #
-for_window [app_id="floating_term"]     floating enable, resize set 960 540, move position center
+for_window [app_id="floating_term"]     floating enable, resize set 960 540, move down 270 px 
 for_window [app_id="music"]             resize set 650 900, move position center
 for_window [app_id="music_visualizer"]  resize set 400 300, move position left
+
+# Mouse focus
+focus_follows_mouse yes
 
 # GENERIC KEYBINDINGS:
 #
@@ -264,4 +267,9 @@ bindsym $mod+r mode "resize"
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater       move workspace to output right
 bindsym $mod+Ctrl+less          move workspace to output left
+
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+
+exec hash dbus-update-activation-environment 2>/dev/null && \
+       dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
