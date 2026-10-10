@@ -177,7 +177,20 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      -- VS Code-style inline blame text
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 500, -- Delay in milliseconds before blame text appears
+      },
     },
+    config = function(_, opts)
+      local gs = require('gitsigns')
+      gs.setup(opts)
+      -- <leader>gb: detailed floating pop-up for the current line
+      vim.keymap.set('n', '<leader>gb', gs.blame_line, { desc = '[G]it [b]lame line (pop-up)' })
+      -- <leader>gB: turn the automatic inline text on/off
+      vim.keymap.set('n', '<leader>gB', gs.toggle_current_line_blame, { desc = '[G]it toggle inline [B]lame' })
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -247,6 +260,7 @@ require('lazy').setup({
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>g', group = '[G]it' },
       },
     },
   },
@@ -261,7 +275,7 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -673,15 +687,21 @@ require('lazy').setup({
         lua = { 'stylua' },
         go = { 'gofumpt', 'golines' },
         html = { 'prettier' },
-        markdown = { 'prettier' },
+        -- markdown = { 'prettier' },
         shell = { 'shellcheck', 'shfmt' },
         css = { 'prettier' },
         javascript = { 'prettier' },
+        -- yaml = { 'prettier', 'trim_whitespace' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = 'fallback',
+        stop_after_first = false,
       },
     },
   },
@@ -911,7 +931,7 @@ require('lazy').setup({
   --
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
+  -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
