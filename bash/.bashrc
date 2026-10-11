@@ -133,5 +133,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# Load OVH specific bash config
-[ -f "${HOME}/.ovh-bashrc" ] && source "${HOME}/.ovh-bashrc"
+# Golang
+export PATH=$PATH:${HOME}/.local/bin/go/bin
+
+# Load work specific config
+work_dots_dir="${HOME}/work-dots"
+if [[ -d "$work_dots_dir" && -d "${work_dots_dir}/bash" ]]; then
+	source "${work_dots_dir}/bash/.bashrc" 2>/dev/null
+	source "${work_dots_dir}/bash/.bash_aliases" 2>/dev/null
+fi
